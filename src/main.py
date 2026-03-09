@@ -78,7 +78,6 @@ async def main():
         "telegrambot": TelegramBotController()
     }
 
-    # Add telegram bot controller to api for use by processors
     api["telegram_bot"] = controllers["telegrambot"]
 
     tasks = [
