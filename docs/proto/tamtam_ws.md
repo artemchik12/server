@@ -25,5 +25,45 @@
 ## Команды протокола
 
 ### PING (1)
-Клиент периодически отправляет пакет с командой PING и пустой нагрузкой серверу.
+Клиент периодически отправляет пакет с командой PING и нагрузкой "{"interactive": true}".
 Сервер отвечает ему тем же.
+
+### SESSION_INIT (6)
+Первый пакет, который клиент отправляет на сервер после подключения. Полезная нагрузка:
+```
+{
+  "userAgent": {
+    "deviceType": "WEB",
+    "appVersion": "версия приложения",
+    "osVersion": "операционная система",
+    "locale": "язык приложения",
+    "deviceLocale": "язык устройства",
+    "deviceName": "название устройства",
+    "screen": "размер экрана..?",
+    "headerUserAgent": "юзерагент устройства",
+    "timezone": "часовой пояс"
+  },
+  "deviceId": "ID приложения"
+}
+```
+
+Сервер отвечает ему пакетом с тем же опкодом, но другой нагрузкой:
+```
+{
+  "proxy": "msgproxy.okcdn.ru",
+  "logs-enabled": false,
+  "proxy-domains": [
+    "okcdn.ru",
+    "mycdn.me",
+    "ok.ru",
+    "odnoklassniki.ru",
+    "odkl.ru",
+    "vk.com",
+    "userapi.com",
+    "vkuser.net",
+    "vkusercdn.ru"
+  ],
+  "location": "RU",
+  "libh-enabled": true
+}
+```
